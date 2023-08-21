@@ -5,19 +5,18 @@ export const fetchMeals = createAsyncThunk("meals/fetchMeals", async () => {
     "https://www.themealdb.com/api/json/v1/1/categories.php"
   );
   const data = await response.json();
-  console.log("data", data);
   return data;
 });
 
 const initialState = {
-  meals: [],
+  data: {},
   status: "idle",
   error: null,
 };
 
 const mealSlice = createSlice({
   name: "meals",
-  initialState,
+  initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -26,7 +25,7 @@ const mealSlice = createSlice({
       })
       .addCase(fetchMeals.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.meals = action.payload;
+        state.data = action.payload;
       })
       .addCase(fetchMeals.rejected, (state, action) => {
         state.status = "failed";
@@ -36,4 +35,5 @@ const mealSlice = createSlice({
 });
 
 export const mealActions = mealSlice.actions;
+
 export default mealSlice.reducer;

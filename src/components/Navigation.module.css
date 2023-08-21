@@ -1,0 +1,7 @@
+.nav {
+  display: flex;
+  gap: 5px;
+  list-style-type: none;
+  overflow-x: scroll;
+  padding-bottom: 30px;
+}

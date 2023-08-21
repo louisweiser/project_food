@@ -18,11 +18,11 @@ const router = createBrowserRouter([
 function App() {
   const dispatch = useDispatch();
 
-  const meals = useSelector((state) => state.meals);
+  const state = useSelector((state) => state);
 
   useEffect(() => {
-    console.log("Meals aus dem Zustand:", meals);
-  }, [meals]);
+    console.log("Meals aus dem Zustand:", state);
+  }, [state]);
 
   useEffect(() => {
     dispatch(fetchMeals());
