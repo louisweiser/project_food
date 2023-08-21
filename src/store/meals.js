@@ -1,10 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// Definieren Sie die asynchrone Aktion zuerst
 export const fetchMeals = createAsyncThunk("meals/fetchMeals", async () => {
   const response = await fetch(
     "https://www.themealdb.com/api/json/v1/1/categories.php"
-  ); // Fügen Sie "https://" zu Ihrer URL hinzu
+  );
   const data = await response.json();
   console.log("data", data);
   return data;
@@ -12,8 +11,8 @@ export const fetchMeals = createAsyncThunk("meals/fetchMeals", async () => {
 
 const initialState = {
   meals: [],
-  status: "idle", // Für den Laden-Status
-  error: null, // Für Fehlermeldungen
+  status: "idle",
+  error: null,
 };
 
 const mealSlice = createSlice({
