@@ -1,17 +1,22 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { fetchMeals } from "./store/meals";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import { fetchCategories } from "./store/category-slice";
 
 import RootLayout from "./pages/Root";
 import HomePage from "./pages/Home";
+import CategoryPage from "./pages/MealsByCategory";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
-    children: [{ index: true, element: <HomePage /> }],
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: "category/:categoryName", element: <CategoryPage /> },
+      { path: "cart", element: <CategoryPage /> },
+    ],
   },
 ]);
 
@@ -25,9 +30,8 @@ function App() {
   }, [state]);
 
   useEffect(() => {
-    dispatch(fetchMeals());
+    dispatch(fetchCategories());
   }, [dispatch]);
-  console.log();
   return <RouterProvider router={router} />;
 }
 
