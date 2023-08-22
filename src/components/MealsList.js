@@ -10,18 +10,12 @@ export default function MealsList(props) {
 
   const state = useSelector((state) => state);
 
-  useEffect(() => {
-    console.log("Meals aus dem Zustand:", state);
-  }, [state]);
-
   const category = props.category;
-  console.log();
   useEffect(() => {
     dispatch(fetchMealsByCategory(category));
   }, [dispatch, category]);
 
   const mealList = state.mealsByCategory.mealsByCategory[category];
-  console.log("ziel", mealList);
 
   if (!mealList) {
     return;

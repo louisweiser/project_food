@@ -17,7 +17,6 @@ export default function Navigation() {
       <Link to={"/category/" + item.strCategory}>{item.strCategory}</Link>
     </li>
   ));
-  console.log(categories);
 
   return <ul className={classes.nav}>{navigation}</ul>;
 }
