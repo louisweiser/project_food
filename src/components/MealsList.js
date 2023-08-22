@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { fetchMealsByCategory } from "../store/mealsByCategory-slice";
 
+import MealItem from "./MealItem";
+
 export default function MealsList(props) {
   const dispatch = useDispatch();
 
@@ -25,7 +27,11 @@ export default function MealsList(props) {
     return;
   }
 
-  const render = mealList.map((meal) => <li>{meal.strMeal}</li>);
+  const render = mealList.map((meal) => (
+    <li key={meal.idMeal}>
+      <MealItem meal={meal.strMeal} id={meal.idMeal}></MealItem>
+    </li>
+  ));
 
   if (!render) {
     return;

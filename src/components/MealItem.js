@@ -1,17 +1,24 @@
-import React from "react";
+import { useDispatch } from "react-redux";
+
+import { cartActions } from "../store/cart-slice";
 
 export default function MealItem(props) {
+  const dispatch = useDispatch();
+
   if (!props) {
     return;
   }
-  const { meal, onAddToCart } = props;
 
-  const mealName = props.mealName;
+  const { meal, id } = props;
+
+  const addItemHandler = () => {
+    dispatch(cartActions.addItemToCart({ id, meal }));
+  };
 
   return (
     <>
-      <h3>{meal.name}</h3>
-      <button onClick={() => onAddToCart(mealName)}>Add to Cart</button>
+      <h3>{meal}</h3>
+      <button onClick={addItemHandler}>Add to Cart</button>
     </>
   );
 }

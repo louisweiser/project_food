@@ -7,6 +7,7 @@ import { fetchCategories } from "./store/category-slice";
 import RootLayout from "./pages/Root";
 import HomePage from "./pages/Home";
 import CategoryPage from "./pages/MealsByCategory";
+import CartPage from "./pages/Cart";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "category/:categoryName", element: <CategoryPage /> },
-      { path: "cart", element: <CategoryPage /> },
+      { path: "cart", element: <CartPage /> },
     ],
   },
 ]);
@@ -26,7 +27,7 @@ function App() {
   const state = useSelector((state) => state);
 
   useEffect(() => {
-    console.log("Meals aus dem Zustand:", state);
+    console.log("App.js redux state", state);
   }, [state]);
 
   useEffect(() => {
